@@ -1,0 +1,10 @@
+name: AI Chatbot
+type: module
+description: 'Integrates a PHP AI chatbot into Drupal.'
+core_version_requirement: ^11
+package: Artificial Intelligence
+dependencies: []
+project: 'https://www.drupal.org/project/ai_chatbot'
+project_gitlab: 'https://git.drupalcode.org/project/ai_chatbot'
+author: 'Rumen Damyanov (contact@rumenx.com)'
+langcode: en

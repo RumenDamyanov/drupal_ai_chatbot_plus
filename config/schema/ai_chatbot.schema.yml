@@ -1,0 +1,69 @@
+ai_chatbot.settings:
+  type: config_object
+  label: 'AI Chatbot settings'
+  translatable: true
+  mapping:
+    models:
+      type: sequence
+      label: 'Available Models'
+      translatable: true
+      sequence:
+        type: mapping
+        mapping:
+          id:
+            type: string
+            label: 'Model ID'
+          label:
+            type: string
+            label: 'Model Label'
+            translatable: true
+          api_key:
+            type: string
+            label: 'API Key for this model'
+    active_model:
+      type: string
+      label: 'Active Model ID'
+    use_env:
+      type: boolean
+      label: 'Use environment variable for API keys'
+    other_options:
+      type: mapping
+      label: 'Other Options'
+      mapping:
+        enable_logging:
+          type: boolean
+          label: 'Enable logging'
+        show_popup_on_all_pages:
+          type: boolean
+          label: 'Show popup on all pages by default'
+    model_parameters:
+      type: mapping
+      label: 'Model Parameters'
+      mapping:
+        temperature:
+          type: float
+          label: 'Temperature'
+        max_tokens:
+          type: integer
+          label: 'Max Tokens'
+        system_prompt:
+          type: string
+          label: 'System Prompt'
+          translatable: true
+    widget_customization:
+      type: mapping
+      label: 'Widget Customization'
+      mapping:
+        color:
+          type: string
+          label: 'Widget Color'
+        avatar:
+          type: string
+          label: 'Avatar Image URL'
+        welcome_message:
+          type: string
+          label: 'Welcome Message'
+          translatable: true
+        display_mode:
+          type: string
+          label: 'Display Mode'

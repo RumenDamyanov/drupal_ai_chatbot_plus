@@ -1,0 +1,42 @@
+# Composer dependencies
+/vendor/
+
+# PHPUnit coverage reports
+/coverage/
+
+# PHPUnit config backups
+phpunit.xml.dist.bak
+.phpunit.cache
+
+# Drupal config and state (if any local overrides)
+/sites/*/files/
+/sites/*/private/
+
+# IDE/editor files
+*.swp
+*.swo
+*.sublime*
+*.idea/
+.vscode/
+.DS_Store
+
+# OS files
+Thumbs.db
+
+# Logs
+*.log
+
+# Node/npm (if ever used)
+/node_modules/
+
+# Misc
+.env
+
+# Ignore test output
+/test-output/
+
+# Ignore compiled CSS/JS (if built)
+/css/*.min.css
+/js/*.min.js
+
+composer.lock

@@ -1,0 +1,10 @@
+services:
+  ai_chatbot.service:
+    class: 'Drupal\ai_chatbot\Service\AiChatbotService'
+    arguments:
+      - '%ai_chatbot.api_key%'
+      - '%ai_chatbot.model_parameters%'
+      - '%ai_chatbot.active_model%'
+      - '%ai_chatbot.models%'
+    tags:
+      - { name: 'service' }
