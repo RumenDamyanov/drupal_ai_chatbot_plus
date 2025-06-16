@@ -1,7 +1,11 @@
 <?php
-namespace Drupal\ai_chatbot\Service;
-if (!class_exists('Drupal\\ai_chatbot\\Service\\AiChatbotService')) {
-    class AiChatbotService {
+namespace Drupal\ai_chatbot_plus\Service;
+if (!class_exists('Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService')) {
+    /**
+     * Mock AiChatbotPlusService for testing.
+     */
+    class AiChatbotPlusService
+    {
         public $apiKey;
         public $modelParameters;
         public $activeModel;
@@ -42,17 +46,18 @@ if (!class_exists('Drupal\\ai_chatbot\\Service\\AiChatbotService')) {
     }
 }
 
-namespace Drupal\ai_chatbot\Tests;
+namespace Drupal\ai_chatbot_plus\Tests;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Unit test for AiChatbotService logic.
+ * @coversDefaultClass \\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService
+ * Unit tests for AI Chatbot Plus Service logic.
  *
- * @group ai_chatbot
+ * @group ai_chatbot_plus
  */
-class AiChatbotServiceTest extends TestCase {
+class AiChatbotPlusServiceTestPlus extends TestCase {
   public function testGetChatbotInstanceUsesActiveModelApiKey() {
-    $class = '\\Drupal\\ai_chatbot\\Service\\AiChatbotService';
+    $class = '\\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService';
     $service = new $class('default-key', [], 'model2', [
       ['id' => 'model1', 'label' => 'Model 1', 'api_key' => 'key1'],
       ['id' => 'model2', 'label' => 'Model 2', 'api_key' => 'key2'],
@@ -63,14 +68,14 @@ class AiChatbotServiceTest extends TestCase {
   }
 
   public function testChatHistoryStorage() {
-    $class = '\\Drupal\\ai_chatbot\\Service\\AiChatbotService';
+    $class = '\\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService';
     $service = new $class('key', [], null, [], null);
     $service->saveChatHistory([['role' => 'user', 'content' => 'hi']], 1, null);
     $this->assertTrue(true, 'Chat history save does not throw error.');
   }
 
   public function testGetChatbotInstanceWithInvalidModel() {
-    $class = '\\Drupal\\ai_chatbot\\Service\\AiChatbotService';
+    $class = '\\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService';
     $service = new $class('default-key', [], 'nonexistent', [
       ['id' => 'model1', 'label' => 'Model 1', 'api_key' => 'key1'],
     ]);
@@ -81,20 +86,20 @@ class AiChatbotServiceTest extends TestCase {
   }
 
   public function testSaveChatHistoryWithEmptyHistory() {
-    $class = '\\Drupal\\ai_chatbot\\Service\\AiChatbotService';
+    $class = '\\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService';
     $service = new $class('key', [], null, [], null);
     $result = $service->saveChatHistory([], 1, null);
     $this->assertTrue($result);
   }
 
   public function testConstructorWithMinimalArgs() {
-    $class = '\\Drupal\\ai_chatbot\\Service\\AiChatbotService';
+    $class = '\\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService';
     $service = new $class('key');
     $this->assertTrue(is_a($service, $class)); // Use is_a() with assertTrue for PHPUnit 10 compatibility
   }
 
   public function testGetChatbotInstanceReturnsObject() {
-    $class = '\\Drupal\\ai_chatbot\\Service\\AiChatbotService';
+    $class = '\\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService';
     $service = new $class('key');
     $chatbot = $service->getChatbotInstance();
     $this->assertTrue(is_object($chatbot)); // Use assertTrue(is_object()) for PHPUnit 10 compatibility

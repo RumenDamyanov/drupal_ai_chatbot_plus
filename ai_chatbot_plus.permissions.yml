@@ -1,0 +1,9 @@
+access ai chatbot plus:
+  title: 'Access AI Chatbot Plus'
+  description: 'Allow users to interact with the AI Chatbot Plus block and page.'
+view ai chatbot plus analytics:
+  title: 'View AI Chatbot Plus Analytics'
+  description: 'Allow users to view the AI Chatbot Plus analytics and logs.'
+configure ai chatbot plus:
+  title: 'Configure AI Chatbot Plus settings'
+  description: 'Allow users to configure AI Chatbot Plus settings.'

@@ -1,0 +1,8 @@
+ai_chatbot_plus/ai_chatbot_plus:
+  css:
+    theme:
+      css/ai_chatbot_plus.css: {}
+  js:
+    js/ai_chatbot_plus.js: {}
+  dependencies:
+    - core/jquery

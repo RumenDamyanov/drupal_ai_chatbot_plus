@@ -1,6 +1,6 @@
-ai_chatbot.settings:
+ai_chatbot_plus.settings:
   type: config_object
-  label: 'AI Chatbot settings'
+  label: 'AI Chatbot Plus settings'
   translatable: true
   mapping:
     models:

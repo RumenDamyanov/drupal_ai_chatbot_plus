@@ -1,21 +1,53 @@
 <?php
 
-namespace Drupal\ai_chatbot\Form;
+namespace Drupal\ai_chatbot_plus\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
-class AiChatbotSettingsForm extends ConfigFormBase {
+/**
+ * Settings form for AI Chatbot Plus configuration.
+ *
+ * @category Form
+ * @package  Ai_Chatbot_Plus
+ * @author   Rumen Damyanov <contact@rumenx.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     https://www.drupal.org/project/ai_chatbot_plus
+ */
+class AiChatbotPlusSettingsForm extends ConfigFormBase {
+  /**
+   * {@inheritdoc}
+   *
+   * @return string
+   *   The form ID.
+   */
   public function getFormId() {
-    return 'ai_chatbot_settings_form';
+    return 'ai_chatbot_plus_settings_form';
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return array
+   *   Editable config names.
+   */
   protected function getEditableConfigNames() {
-    return ['ai_chatbot.settings'];
+    return ['ai_chatbot_plus.settings'];
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @param array $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state object.
+   *
+   * @return array
+   *   The built form array.
+   */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config('ai_chatbot.settings');
+    $config = $this->config('ai_chatbot_plus.settings');
 
     $form['use_env'] = [
       '#type' => 'checkbox',
@@ -156,6 +188,14 @@ class AiChatbotSettingsForm extends ConfigFormBase {
     return parent::buildForm($form, $form_state);
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @param array $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state object.
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $models = [];
     if ($form_state->hasValue('models')) {
@@ -169,7 +209,7 @@ class AiChatbotSettingsForm extends ConfigFormBase {
         }
       }
     }
-    $this->config('ai_chatbot.settings')
+    $this->config('ai_chatbot_plus.settings')
       ->set('models', $models)
       ->set('active_model', $form_state->getValue('active_model'))
       ->set('use_env', $form_state->getValue('use_env'))
@@ -192,6 +232,14 @@ class AiChatbotSettingsForm extends ConfigFormBase {
     parent::submitForm($form, $form_state);
   }
 
+  /**
+   * Handles adding a new model row to the models table.
+   *
+   * @param array $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state object.
+   */
   public function addModelSubmit(array &$form, FormStateInterface $form_state) {
     $models = $form_state->getValue('models') ?: [];
     $models[] = ['id' => '', 'label' => '', 'api_key' => ''];

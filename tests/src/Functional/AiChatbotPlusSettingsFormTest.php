@@ -1,19 +1,19 @@
 <?php
 
-namespace Drupal\ai_chatbot\Tests;
+namespace Drupal\ai_chatbot_plus\Tests;
 
 use Drupal\Tests\BrowserTestBase;
 
 /**
- * Functional test for AI Chatbot settings form and config export/import.
+ * Functional test for AI Chatbot Plus settings form and config export/import.
  *
- * @group ai_chatbot
+ * @group ai_chatbot_plus
  */
-class AiChatbotSettingsFormTest extends BrowserTestBase {
-  protected static $modules = ['ai_chatbot'];
+class AiChatbotPlusSettingsFormTest extends BrowserTestBase {
+  protected static $modules = ['ai_chatbot_plus'];
 
   public function testSettingsFormAccessAndSave() {
-    $user = $this->drupalCreateUser(['configure ai chatbot']);
+    $user = $this->drupalCreateUser(['configure ai chatbot plus']);
     $this->drupalLogin($user);
     $this->drupalGet('/admin/config/services/ai-chatbot');
     $this->assertSession()->statusCodeEquals(200);

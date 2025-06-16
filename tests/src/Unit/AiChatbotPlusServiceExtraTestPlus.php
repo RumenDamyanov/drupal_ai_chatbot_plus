@@ -1,11 +1,15 @@
 <?php
-namespace Drupal\ai_chatbot\Tests;
+namespace Drupal\ai_chatbot_plus\Tests;
 
 use PHPUnit\Framework\TestCase;
 
 // If the service does not exist, mock it for testability.
-if (!class_exists('Drupal\\ai_chatbot\\Service\\AiChatbotService')) {
-    class AiChatbotService {
+if (!class_exists('Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService')) {
+    /**
+     * Mock AiChatbotPlusService for testing.
+     */
+    class AiChatbotPlusService
+    {
         public $apiKey;
         public $modelParameters;
         public $activeModel;
@@ -45,14 +49,14 @@ if (!class_exists('Drupal\\ai_chatbot\\Service\\AiChatbotService')) {
 }
 
 /**
- * @coversDefaultClass \Drupal\ai_chatbot\Service\AiChatbotService
- * Additional unit tests for AiChatbotService logic.
+ * @coversDefaultClass \\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService
+ * Additional unit tests for AI Chatbot Plus Service logic.
  *
- * @group ai_chatbot
+ * @group ai_chatbot_plus
  */
-class AiChatbotServiceExtraTest extends TestCase {
+class AiChatbotPlusServiceExtraTestPlus extends TestCase {
     public function testGetChatHistoryReturnsArray() {
-        $class = '\\Drupal\\ai_chatbot\\Service\\AiChatbotService';
+        $class = '\\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService';
         $service = new $class('key');
         $history = $service->getChatHistory(1, null);
         $this->assertIsArray($history);
@@ -60,7 +64,7 @@ class AiChatbotServiceExtraTest extends TestCase {
     }
 
     public function testSaveChatHistoryStoresMessages() {
-        $class = '\\Drupal\\ai_chatbot\\Service\\AiChatbotService';
+        $class = '\\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService';
         $service = new $class('key');
         $messages = [['role' => 'user', 'content' => 'test']];
         $service->saveChatHistory($messages, 1, null);
@@ -69,7 +73,7 @@ class AiChatbotServiceExtraTest extends TestCase {
     }
 
     public function testLogConversationStoresLog() {
-        $class = '\\Drupal\\ai_chatbot\\Service\\AiChatbotService';
+        $class = '\\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService';
         $service = new $class('key');
         $service->logConversation(1, 'abc', 'hello', 'user');
         $this->assertTrue(property_exists($service, 'lastLog'));
@@ -77,7 +81,7 @@ class AiChatbotServiceExtraTest extends TestCase {
     }
 
     public function testGetConversationLogReturnsArray() {
-        $class = '\\Drupal\\ai_chatbot\\Service\\AiChatbotService';
+        $class = '\\Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService';
         $service = new $class('key');
         $log = $service->getConversationLog(10);
         $this->assertIsArray($log);

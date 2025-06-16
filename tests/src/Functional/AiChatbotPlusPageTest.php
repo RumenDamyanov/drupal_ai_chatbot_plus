@@ -1,20 +1,20 @@
 <?php
 
-namespace Drupal\ai_chatbot\Tests;
+namespace Drupal\ai_chatbot_plus\Tests;
 
 use Drupal\Tests\BrowserTestBase;
 
 /**
- * Functional test for AI Chatbot page access and permissions.
+ * Functional test for AI Chatbot Plus page access and permissions.
  *
- * @group ai_chatbot
+ * @group ai_chatbot_plus
  */
-class AiChatbotPageTest extends BrowserTestBase {
-  protected static $modules = ['ai_chatbot'];
+class AiChatbotPlusPageTest extends BrowserTestBase {
+  protected static $modules = ['ai_chatbot_plus'];
 
   public function testPageAccess() {
     // User with permission.
-    $user = $this->drupalCreateUser(['access ai chatbot']);
+    $user = $this->drupalCreateUser(['access ai chatbot plus']);
     $this->drupalLogin($user);
     $this->drupalGet('/ai-chatbot');
     $this->assertSession()->statusCodeEquals(200);

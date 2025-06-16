@@ -1,28 +1,28 @@
 <?php
 
-namespace Drupal\ai_chatbot\Tests;
+namespace Drupal\ai_chatbot_plus\Tests;
 
 use Drupal\Tests\BrowserTestBase;
 
 /**
- * Functional test for AI Chatbot block visibility and permissions.
+ * Functional test for AI Chatbot Plus block visibility and permissions.
  *
- * @group ai_chatbot
+ * @group ai_chatbot_plus
  */
-class AiChatbotBlockTest extends BrowserTestBase {
+class AiChatbotPlusBlockTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['block', 'ai_chatbot'];
+  protected static $modules = ['block', 'ai_chatbot_plus'];
 
   /**
    * Test block visibility for users with and without permission.
    */
   public function testBlockVisibility() {
     // Create user with permission.
-    $user = $this->drupalCreateUser(['access ai chatbot']);
+    $user = $this->drupalCreateUser(['access ai chatbot plus']);
     $this->drupalLogin($user);
-    $this->drupalPlaceBlock('ai_chatbot_block');
+    $this->drupalPlaceBlock('ai_chatbot_plus_block');
     $this->drupalGet('<front>');
     $this->assertSession()->elementExists('css', '.ai-chatbot-widget');
 
