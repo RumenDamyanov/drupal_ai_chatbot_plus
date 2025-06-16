@@ -2,9 +2,7 @@ services:
   ai_chatbot_plus.service:
     class: 'Drupal\\ai_chatbot_plus\\Service\\AiChatbotPlusService'
     arguments:
-      - '%ai_chatbot_plus.api_key%'
-      - '%ai_chatbot_plus.model_parameters%'
-      - '%ai_chatbot_plus.active_model%'
-      - '%ai_chatbot_plus.models%'
+      - '@config.factory'
+      - '@state'
     tags:
       - { name: 'service' }

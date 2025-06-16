@@ -3,7 +3,7 @@
 namespace Drupal\ai_chatbot_plus\Service;
 
 use rumenx\php_chatbot\Chatbot;
-use Drupal;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\State\StateInterface;
 
 /**
@@ -59,34 +59,23 @@ class AiChatbotPlusService
     /**
      * AiChatbotPlusService constructor.
      *
-     * @param string $apiKey
-     *   The API key for the chatbot service.
-     * @param array $modelParameters
-     *   Model parameters for the chatbot.
-     * @param string|null $activeModel
-     *   The currently active model ID.
-     * @param array $models
-     *   List of available models and their configuration.
-     * @param \Drupal\Core\State\StateInterface|null $state
-     *   The Drupal state service (optional, for testability).
+     * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+     *   The config factory service.
+     * @param \Drupal\Core\State\StateInterface $state
+     *   The Drupal state service.
      */
-    public function __construct($apiKey, $modelParameters = [], $activeModel = null, $models = [], $state = null)
+    public function __construct(ConfigFactoryInterface $config_factory, StateInterface $state)
     {
-        $this->apiKey = $apiKey;
-        $this->modelParameters = $modelParameters;
-        $this->activeModel = $activeModel;
-        $this->models = $models;
-        // Use provided state service or fallback to Drupal::service('state') or a stub for testing.
-        $this->state = $state ?: (class_exists('Drupal') ? \Drupal::service('state') : new class {
-            /**
-             * Stub get method for state service.
-             */
-            public function get() { return []; }
-            /**
-             * Stub set method for state service.
-             */
-            public function set() { return true; }
-        });
+        $config = $config_factory->get('ai_chatbot_plus.settings');
+        $this->apiKey = '';
+        $this->models = $config->get('models') ?? [];
+        $this->activeModel = $config->get('active_model') ?? null;
+        $this->modelParameters = $config->get('model_parameters') ?? [];
+        // Optionally set apiKey from first model if available
+        if (!empty($this->models) && !empty($this->models[0]['api_key'])) {
+            $this->apiKey = $this->models[0]['api_key'];
+        }
+        $this->state = $state;
     }
 
     /**
