@@ -1,21 +1,21 @@
 ai_chatbot_plus.settings:
   path: '/admin/config/services/ai-chatbot-plus'
   defaults:
-    _form: '\Drupal\\ai_chatbot_plus\\Form\\AiChatbotPlusSettingsForm'
+    _form: '\Drupal\ai_chatbot_plus\Form\AiChatbotPlusSettingsForm'
     _title: 'AI Chatbot Plus settings'
   requirements:
     _permission: 'configure ai chatbot plus'
 ai_chatbot_plus.page:
   path: '/ai-chatbot-plus'
   defaults:
-    _controller: '\Drupal\\ai_chatbot_plus\\Controller\\AiChatbotPlusController::chatbotPage'
+    _controller: '\Drupal\ai_chatbot_plus\Controller\AiChatbotPlusController::chatbotPage'
     _title: 'AI Chatbot Plus'
   requirements:
     _permission: 'access ai chatbot plus'
 ai_chatbot_plus.analytics:
   path: '/admin/reports/ai-chatbot-plus-analytics'
   defaults:
-    _controller: '\Drupal\\ai_chatbot_plus\\Controller\\AiChatbotPlusAdminController::analyticsPage'
+    _controller: '\Drupal\ai_chatbot_plus\Controller\AiChatbotPlusAdminController::analyticsPage'
     _title: 'AI Chatbot Plus Analytics'
   requirements:
     _permission: 'view ai chatbot plus analytics'
