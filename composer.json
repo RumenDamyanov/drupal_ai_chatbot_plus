@@ -29,7 +29,8 @@
     "phpstan/phpstan": "^1.10",
     "mglaman/phpstan-drupal": "^1.2"
   },
-  "minimum-stability": "dev",
+  "minimum-stability": "beta",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "Drupal\\ai_chatbot_plus\\": "src/"
